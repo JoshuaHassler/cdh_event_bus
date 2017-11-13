@@ -65,11 +65,6 @@ int main(int argc, char const *argv[]) {
 
     pub.publish(578);
 
-    if (pthread_join(tmp, NULL)) {
-        fprintf(stderr, "Error joining thread\n");
-        return 2;
-    }
-
     std::cout << "Data: " << sub.get_data() << std::endl;
     /*
 

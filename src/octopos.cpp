@@ -130,7 +130,7 @@ void* octopOS::listen_for_child(void* tentacle_id) {
     std::shared_ptr<tentacle> t = tentacles[*(int*)tentacle_id];                  // NOLINT
 
     std::pair<long, std::string> data;                                            // NOLINT
-    for (unsigned i = 0; i < 3; ++i) {
+    for (;;) {
         data = t->read(-5);
         std::istringstream iss(data.second);
         std::vector<std::string> tokens {

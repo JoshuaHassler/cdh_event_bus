@@ -63,10 +63,8 @@ void* subscriber_manager::wait_for_data(void* data) {
             if (message.first) {
                 registered_callbacks_lock.lock();
                 for (auto cb : registered_callbacks["test"]) {
-                    std::cout << "Calling Back: " << std::endl;
                     cb(topic.second);
                 }
-
                 registered_callbacks_lock.unlock();
             }
         }
