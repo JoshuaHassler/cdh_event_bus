@@ -85,4 +85,4 @@ This section aims to talk through the basic flow of the lifetime of a octopOS to
 ### Communication Protocal
 
 ## Full Documentation
-Full documentation is available [here](http://github.io/JoshuaHassler/cdh_event_bus)
+Full documentation is available [here](https://spacehauc-command-and-data-handling.github.io/OctopOS/)
