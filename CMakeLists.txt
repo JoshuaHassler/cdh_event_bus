@@ -1,29 +1,18 @@
-#include(BoostTestHelpers)
-
-# Change project name to desired name
-
-
-# add_boost_test(SomeUnitTests.cpp my_library)
-
-# Find the boost unit testing library
-# find_package(Boost COMPONENTS unit_test_framework REQUIRED)
-
-# Change name of executable to desired name
-
-
-# include directory for headers
-#include_directories(include)
-
-############################ Actually in Use ###################################
-cmake_minimum_required (VERSION 2.8.12.2)
+cmake_minimum_required (VERSION 3.1)
 
 # Set base project details
 set (PROJECT_NAME "octopOS")
 project (${PROJECT_NAME})
 
-set(CMAKE_CXX_FLAGS "-std=c++11 -g -Wall")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -g -Wall -O0 -fprofile-arcs -ftest-coverage")
 set(EXECUTABLE_OUTPUT_PATH "${CMAKE_BINARY_DIR}/bin")
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/library")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
+set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMakeModules)
+
+if(CMAKE_COMPILER_IS_GNUCXX)
+    include(CodeCoverage)
+    setup_target_for_coverage(${PROJECT_NAME}_coverage tests coverage)
+endif()
 
 # Create subscriber library
 file(GLOB SubscriberSrc include/subscriber.h

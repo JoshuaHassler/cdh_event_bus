@@ -73,6 +73,7 @@ void* subscriber_manager::wait_for_data(void* data) {
         topic_ids_lock.unlock();
         topic_memory_lock.unlock();
     }
+    return NULL;
 }
 
 std::unordered_map< std::string,

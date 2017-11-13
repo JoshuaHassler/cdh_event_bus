@@ -170,7 +170,9 @@ void* octopOS::listen_for_child(void* tentacle_id) {
                 break;
             }
             default:
-                throw std::runtime_error("Unexpected message on tenticale!");
+                if (data.first != 0) {
+                    throw std::runtime_error("Unexpected message on tenticale");
+                }
         }
     }
 

@@ -8,12 +8,30 @@ language: cpp
 compiler:
   - clang
   - gcc
+
+addons:
+    apt:
+        sources:
+            - ubuntu-toolchain-r-test
+        packages:
+            - lcov
+
 before_install:
   - sudo apt install libboost-all-dev
+
 # Build steps
 script:
   - mkdir build && cd build
-  - cmake .. && make
+  - cmake -DCMAKE_BUILD_TYPE=Debug .. && make
   - make test
   - cd .. && git clone "https://github.com/SpaceHAUC-Command-and-Data-Handling/Powerlint.git" && export PATH=$PATH:. && mv ./Powerlint/* ./
   - wget "https://raw.githubusercontent.com/SpaceHAUC-Command-and-Data-Handling/git_hooks/master/hooks/check-style" && chmod +x ./check-style && ./check-style
+
+# Creating report
+after_success:
+  - cd ${TRAVIS_BUILD_DIR}
+  - lcov --directory . --capture --output-file coverage.info # capture coverage info
+  - lcov --remove coverage.info '/usr/*' --output-file coverage.info # filter out system
+  - lcov --list coverage.info #debug info
+  # Uploading report to CodeCov
+  - bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
