@@ -149,6 +149,13 @@ class subscriber : public subscriber_manager {
     }
 
     /*!
+     * Is data available to read?
+     */
+    bool data_available() {
+	return !data_queue.empty();
+    }
+
+    /*!
      * Reads from the top of the data queue. If there is no data this will block
      * untill signaled from the callback that there is data available.
      * @return The top of the queue. Is type T.
