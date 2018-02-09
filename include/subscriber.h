@@ -150,6 +150,7 @@ class subscriber : public subscriber_manager {
 
     /*!
      * Is data available to read?
+     * @return Whether data is available.
      */
     bool data_available() {
         return !data_queue.empty();
