@@ -130,8 +130,11 @@ std::pair<unsigned, key_t> octopOS::create_new_topic
     return return_value;
 }
 
-void* octopOS::listen_for_child(void* tentacle_id) {
-    std::shared_ptr<tentacle> t = tentacles[*(int*)tentacle_id];                  // NOLINT
+// TENTACLE_INDEX_DYNAMIC is expected to be freed by this function
+void* octopOS::listen_for_child(void* tentacle_index_dynamic) {
+    int tentacle_index = *(int*)tentacle_index_dynamic;                   // NOLINT
+    free((int*)tentacle_index_dynamic);                   // NOLINT
+    std::shared_ptr<tentacle> t = tentacles[tentacle_index];
 
     std::pair<long, std::string> data;                                            // NOLINT
     for (;;) {
@@ -163,7 +166,7 @@ void* octopOS::listen_for_child(void* tentacle_id) {
                 std::pair<unsigned, key_t> response =
                     octopOS::getInstance().subscribe_to_topic(
                         tokens[2],
-                        *(int*)tentacle_id,                                       // NOLINT
+                        tentacle_index,
                         id,
                         std::stoi(tokens[1]));
 

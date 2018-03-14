@@ -68,14 +68,16 @@ class octopOS {
 
     /*!
      * listen_for_child listens for requestes from a child on a specific
-     * tentacle. It then routes the request and executtes the proper octopOS
+     * tentacle. It then routes the request and executes the proper octopOS
      * code to complete the request. Function signature is designed to be used
-     * with pthreads_create.
-     * @param tentacle_index The index in the global tentacle list is should be
-     * listening on.
+     * with pthread_create.
+     * @param tentacle_index_dynamic The index in the global tentacle list to be
+     * listening on. *Note: this should be a pointer to dynamically allocated
+     * memory containing the index value. This memory will be freed by this
+     * function.*
      * @return NULL
      */
-    static void* listen_for_child(void* tentacle_index);
+    static void* listen_for_child(void* tentacle_index_dynamic);
 
     /*!
      * propagate_to_subscribers sends a message to every subscriber of a topic
