@@ -27,7 +27,7 @@
 #define MSGLEN 126
 #define SHMSIZE 4096
 /*! The number of modules octopOS will start */
-const unsigned NUMMODULES = 1;
+const unsigned NUMMODULES = 20;
 
 /*! The subscriber bit that needs to be set in ids */
 const unsigned SUB_BIT = 0x20000000;

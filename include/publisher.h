@@ -35,12 +35,17 @@ class publisher : public tentacle {
         tentacle(message_key), name(_name) {
         id = getTempId(tentacle::role_t::PUBLISHER);
 
+	std::cout << "Inside; got temp id: " << id << std::endl; // tmp
+	std::cout << "Writing on key: " << message_key << std::endl; // tmp
         write(CREATE_PUB, std::to_string(id) + " " +
             std::to_string(sizeof(T)) + " " + name);
 
         std::pair<long, std::string> response;                                    // NOLINT
 
+	// This read never returns
+	std::cout << "About to read on id: " << id << std::endl;
         response = read(id);
+	std::cout << "After read" << std::endl;
 
         std::istringstream iss(response.second);
         std::vector<std::string> tokens{std::istream_iterator<std::string>{iss},

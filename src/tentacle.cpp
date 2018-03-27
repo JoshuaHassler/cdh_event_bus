@@ -13,7 +13,7 @@ tentacle::tentacle(key_t msg_key) {
         throw std::system_error(
             errno,
             std::generic_category(),
-            "Unable to set signal handler");
+            "Unable to connect tentacle to msg bus");
     }
     if (shared_data == NULL) {
         if (!(shared_data = connect_shm())) {
@@ -29,6 +29,8 @@ std::pair<long, std::string> tentacle::read(long type, bool block, bool under) {
     message_buffer my_buffer;
     std::pair<long, std::string> return_value(0, "");                             // NOLINT Must use long
     int rc;
+
+    std::cout << "Tentacle: reading on Q: " << message_que << std::endl; // tmp
 
     type *= (under)? -1 : 1;  // sets to negative if we intend on reading under
 
