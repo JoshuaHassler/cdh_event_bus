@@ -42,7 +42,7 @@ void octopOS::sig_handler(int sig) {
                     std::generic_category(),
                     "Unable to remove tentacle");
         }
-    } 
+    }
 }
 
 octopOS::octopOS() {
