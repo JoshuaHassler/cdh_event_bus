@@ -34,7 +34,7 @@ void octopOS::sig_handler(int sig) {
         }
     }
     for (unsigned i = 0; i < NUMMODULES; ++i) {
-        tentacles.pop_back();
+        delete tentacles[i];
         if (msgctl(tentacle_ids[i], IPC_RMID, NULL) < 0) {
             if (sig < 0)
                 throw std::system_error(
@@ -87,8 +87,7 @@ octopOS::octopOS() {
                 std::generic_category(),
                 "Unable to create message queues");
         } else {
-            tentacles.push_back(std::make_shared<tentacle>(
-                tentacle(MSGKEY + i)));
+            tentacles.push_back(new tentacle(MSGKEY + i));
         }
     }
 
@@ -131,7 +130,7 @@ std::pair<unsigned, key_t> octopOS::create_new_topic
 }
 
 void* octopOS::listen_for_child(void* tentacle_id) {
-    std::shared_ptr<tentacle> t = tentacles[*(int*)tentacle_id];                  // NOLINT
+    tentacle* t = tentacles[*(int*)tentacle_id];                  // NOLINT
 
     std::pair<long, std::string> data;                                            // NOLINT
     for (;;) {
@@ -299,7 +298,7 @@ octopOS::~octopOS() {
 
 int octopOS::shmid = 0;
 int octopOS::tentacle_ids[NUMMODULES];
-std::vector<std::shared_ptr<tentacle>> octopOS::tentacles;
+std::vector<tentacle*> octopOS::tentacles;
 std::vector<int> octopOS::semids;
 intptr_t *octopOS::shared_ptr, *octopOS::shared_end_ptr;
 std::unordered_map<std::string, std::tuple<unsigned, key_t,

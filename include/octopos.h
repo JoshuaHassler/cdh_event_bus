@@ -143,7 +143,7 @@ class octopOS {
     /*! The ids of the used semaphores */
     static std::vector<int> semids;
     /*! The global list of tentacles used for communication with children */
-    static std::vector<std::shared_ptr<tentacle>> tentacles;
+    static std::vector<tentacle*> tentacles;
     /*! Pointers to locations inside the shared memory segment. Used for
      * allocation */
     static intptr_t *shared_ptr, *shared_end_ptr;
