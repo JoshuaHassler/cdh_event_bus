@@ -34,7 +34,7 @@ void octopOS::sig_handler(int sig) {
         }
     }
     for (unsigned i = 0; i < NUMMODULES; ++i) {
-        tentacles.pop_back();
+        delete tentacles[i];
         if (msgctl(tentacle_ids[i], IPC_RMID, NULL) < 0) {
             if (sig < 0)
                 throw std::system_error(
@@ -42,7 +42,7 @@ void octopOS::sig_handler(int sig) {
                     std::generic_category(),
                     "Unable to remove tentacle");
         }
-    }
+    } 
 }
 
 octopOS::octopOS() {
