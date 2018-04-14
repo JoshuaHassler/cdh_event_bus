@@ -19,6 +19,7 @@ If you are working on a subsystem for SPACE HAUC then most of the information yo
     * Shared Memory Segment
     * Communication Protocal
 * __Further Documentation__
+    * Building
 
 ## Basic Usage
 The basic usage of octopOS is ment to make inter system communication as easy as possible! This section is designed to show you what you can do.
@@ -73,6 +74,38 @@ int x = sub.getData();
 A note is that this call __WILL BLOCK__ your thread if there is no data to be had. It will unblock once data is available, but is advisable to read data from a secondaty thread so your main thread can continue execution.
 
 Remember to include `subscriber.h`
+
+## Building
+Building is easy, but it is important to note how you build is based on whether or not you are building for release. 
+
+If building for debug:
+
+```sh
+cd debug
+cmake -DCMAKE_BUILD_TYPE=Debug ..
+make
+```
+
+Debug build will compile with tests and ensure nothing is stripped from the binary for debugging. 
+
+When building for release:
+
+```sh
+cd debug
+cmake -DCMAKE_BUILD_TYPE=Release ..
+make
+```
+
+Building for release assumes you are building for the satellite itself. It also assumes you have a compatible compiler. If building on the satellite, it will use the default host compiler, but if you're on a "standard" computer, it will look for a cross compiler by the name of `arm-linux-gnueabihf-g++`.
+
+If you're on Ubuntu, you can install the cross compiler just like this: 
+
+```ssh
+sudo apt-get install g++-arm-linux-gnueabihf
+```
+
+And just like that, you're ready to go.
+
 
 ## Advanced Topics
 This section is for those who want to understand how octopOS works under the hood. If you just want to use octopOS see the above __Basic Usage__ section.
