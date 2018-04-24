@@ -66,7 +66,7 @@ void* subscriber_manager::wait_for_data(void* data) {
                 tentacle::read(topic_ids[topic.first], false);
             if (message.first) {
                 registered_callbacks_lock.lock();
-                for (auto cb : registered_callbacks["test"]) {
+                for (auto cb : registered_callbacks[topic.first]) {
                     cb(topic.second);
                 }
                 registered_callbacks_lock.unlock();
