@@ -11,6 +11,7 @@ If you are working on a subsystem for SPACE HAUC then most of the information yo
 
 ## Contents
 * __Basic Usage__
+    * Includes
     * Publisher
     * Subscriber
 * __Advanced Topics__
@@ -22,6 +23,16 @@ If you are working on a subsystem for SPACE HAUC then most of the information yo
 
 ## Basic Usage
 The basic usage of octopOS is ment to make inter system communication as easy as possible! This section is designed to show you what you can do.
+
+### Includes
+OctopOS provides a few libraries. The main ones you will be using are the `publiher` and `subscriber` libraries. All includes follow the format:
+```cpp
+#include<OctopOS/{lib}.h>
+```
+i.e
+```cpp
+#include<OctopOS/subscriber.h>
+```
 
 ### Publisher
 If you would like to publish data from your subsystem for others to read this is the section for you. To create a publisher you only need to construct an instance of the class:

@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['main_2ecpp',['main.cpp',['../main_8cpp.html',1,'']]],
-  ['message_5fbuffer',['message_buffer',['../structmessage__buffer.html',1,'']]],
-  ['message_5fque',['message_que',['../classtentacle.html#a04aaacfa1b8d295e1ce986fc04bf8757',1,'tentacle']]]
+  ['listen_5ffor_5fchild',['listen_for_child',['../classoctopOS.html#ae2742421603a6b4f5883255c8f126b12',1,'octopOS']]]
 ];

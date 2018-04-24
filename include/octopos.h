@@ -10,6 +10,8 @@
 #define INCLUDE_OCTOPOS_H_
 
 #include <signal.h>
+#include <OctopOS/utility.h>
+#include <OctopOS/tentacle.h>
 
 #include <unordered_map>
 #include <mutex>                                                                  // NOLINT
@@ -20,9 +22,6 @@
 #include <iterator>
 #include <memory>
 #include <utility>
-
-#include "../include/utility.h"
-#include "../include/tentacle.h"
 
 /*!
  * octopOS is the main control class. It is singleton so there can only ever be

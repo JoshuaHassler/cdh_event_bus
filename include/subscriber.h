@@ -10,6 +10,7 @@
 #define INCLUDE_SUBSCRIBER_H_
 
 #include <pthread.h>
+#include <OctopOS/tentacle.h>
 
 #include <unordered_map>
 #include <sstream>
@@ -20,8 +21,6 @@
 #include <queue>
 #include <functional>
 #include <tuple>
-
-#include "../include/tentacle.h"
 
 /*! typedef for the function signature of our callback */
 typedef std::function<

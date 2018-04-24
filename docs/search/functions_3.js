@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['octopos',['octopOS',['../classoctopOS.html#a8aba4afbec83dda5efb21cdee1ac0ea8',1,'octopOS']]],
-  ['operator_3d',['operator=',['../classoctopOS.html#a5fdb5eb29d78e1935aff924fcfec306e',1,'octopOS']]]
+  ['listen_5ffor_5fchild',['listen_for_child',['../classoctopOS.html#ae2742421603a6b4f5883255c8f126b12',1,'octopOS']]]
 ];

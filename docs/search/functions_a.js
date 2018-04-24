@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['_7eoctopos',['~octopOS',['../classoctopOS.html#a32dd6c11de577ecb4b98b36c083fbcb8',1,'octopOS']]],
-  ['_7esubscriber',['~subscriber',['../classsubscriber.html#aab361ef1298178bacf826873cddf14d7',1,'subscriber']]]
+  ['wait_5ffor_5fdata',['wait_for_data',['../classsubscriber__manager.html#ae4cb14336860f3c26026e2dbd9562546',1,'subscriber_manager']]],
+  ['write',['write',['../classtentacle.html#a6d02d3c23336a4c1db42b8dcedac863a',1,'tentacle::write(long type, std::string data)'],['../classtentacle.html#af73616d869ee68846fca66681dfce372',1,'tentacle::write(std::pair&lt; long, std::string &gt; pair)']]]
 ];

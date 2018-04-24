@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['read',['read',['../classtentacle.html#a49c6bc95a8bc0c6d309eb35fece916e9',1,'tentacle']]],
-  ['register_5fcb',['register_cb',['../classsubscriber__manager.html#a97bb60557c613021288be7466291c8e5',1,'subscriber_manager']]],
-  ['registered_5fcallbacks',['registered_callbacks',['../classsubscriber__manager.html#a3d4bc41cdd4126a8250dd9d55ad3b99b',1,'subscriber_manager']]],
-  ['role_5ft',['role_t',['../classtentacle.html#a1c05b674667552d26c9e64efef949ce4',1,'tentacle']]],
-  ['rw_5farray',['rw_array',['../structshm__object.html#a54b0a8afa1e8140e8737060fefcc782c',1,'shm_object']]]
+  ['p',['p',['../utility_8h.html#a15a25a25e0d9cb095fb37db51970e162',1,'p(int sem, int counter):&#160;utility.cpp'],['../utility_8cpp.html#aee57af86d8c50aa3dc09a514b3a00e80',1,'p(int sem_group, int donut_type):&#160;utility.cpp']]],
+  ['propagate_5fto_5fsubscribers',['propagate_to_subscribers',['../classoctopOS.html#a3390f6eb5e84a422835e5296ccaf6d4c',1,'octopOS']]],
+  ['publish',['publish',['../classpublisher.html#a39f1e48a4a05650538243336795d7a03',1,'publisher']]],
+  ['publish_5fcode',['PUBLISH_CODE',['../utility_8h.html#adbc3ec0a4ffaf458fc5cb40a7c7e839b',1,'utility.h']]],
+  ['publisher',['publisher',['../classpublisher.html',1,'publisher&lt; T &gt;'],['../classpublisher.html#ab8e880aa79b65ebb5318ae2a04010d92',1,'publisher::publisher()']]],
+  ['publisher_2eh',['publisher.h',['../publisher_8h.html',1,'']]]
 ];

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['wait_5ffor_5fdata',['wait_for_data',['../classsubscriber__manager.html#ae4cb14336860f3c26026e2dbd9562546',1,'subscriber_manager']]],
-  ['write',['write',['../classtentacle.html#a6d02d3c23336a4c1db42b8dcedac863a',1,'tentacle::write(long type, std::string data)'],['../classtentacle.html#af73616d869ee68846fca66681dfce372',1,'tentacle::write(std::pair&lt; long, std::string &gt; pair)']]]
+  ['v',['v',['../utility_8h.html#a2d6a09537f1f254dd7b01f881e133d99',1,'v(int sem, int counter):&#160;utility.cpp'],['../utility_8cpp.html#af0d8b20fefb8678fcc19a06be20c2cef',1,'v(int sem_group, int donut_type):&#160;utility.cpp']]],
+  ['val',['val',['../unionsemun.html#ac6121ecb6d04a024e07e12bd71b94031',1,'semun']]]
 ];
