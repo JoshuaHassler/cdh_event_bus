@@ -24,6 +24,7 @@
 #include "../include/utility.h"
 #include "../include/tentacle.h"
 
+
 /*!
  * octopOS is the main control class. It is singleton so there can only ever be
  * one instance. octopOS implements a light weight data bus on top of the IPC
@@ -36,10 +37,7 @@ class octopOS {
      * getInstance returns a reference to the single static instance of octopOS.
      * @return reference to running octopOS instance
      */
-    static octopOS& getInstance() {
-        static octopOS instance;
-        return instance;
-    }
+    static octopOS& getInstance();
 
     /*! copy constructor deleted to prevent accidental copying of class */
     octopOS(octopOS const&) = delete;
@@ -145,7 +143,7 @@ class octopOS {
     /*! The ids of the used semaphores */
     static std::vector<int> semids;
     /*! The global list of tentacles used for communication with children */
-    static std::vector<std::shared_ptr<tentacle>> tentacles;
+    static std::vector<tentacle*> tentacles;
     /*! Pointers to locations inside the shared memory segment. Used for
      * allocation */
     static intptr_t *shared_ptr, *shared_end_ptr;

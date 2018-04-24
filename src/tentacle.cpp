@@ -30,8 +30,6 @@ std::pair<long, std::string> tentacle::read(long type, bool block, bool under) {
     std::pair<long, std::string> return_value(0, "");                             // NOLINT Must use long
     int rc;
 
-    std::cout << "Tentacle: reading on Q: " << message_que << std::endl; // tmp
-
     type *= (under)? -1 : 1;  // sets to negative if we intend on reading under
 
     if (!block) {

@@ -15,6 +15,7 @@
 #include <time.h>
 #include <unistd.h>
 
+#include <exception>
 #include <iostream>
 #include <cstdlib>
 #include <string>
@@ -91,6 +92,33 @@ class tentacle {
      * @return true if write was successfull, otherwise false.
      */
     bool write(std::pair<long, std::string> pair);                                // NOLINT
+};
+
+// Size-invariant string data type for publishing
+class OctoString {
+private:
+    char buf[MSGLEN - 1];
+public:
+    OctoString() {}
+    OctoString(const std::string &value) {
+	if(value.size() > (MSGLEN - 2)) {
+	    throw std::range_error("Given string is too large to publish.");
+	}
+	strcpy(buf, value.c_str());
+    }
+    OctoString& operator=(const std::string &other) {
+	strcpy(buf, other.c_str());
+    }
+    OctoString& operator=(const OctoString &other) {
+	strcpy(buf, other.buf);
+    }
+    std::string get() {
+	return std::string(buf);
+    }
+
+    operator std::string() {
+	return std::string(buf);
+    }
 };
 
 #endif  // INCLUDE_TENTACLE_H_

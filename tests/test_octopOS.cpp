@@ -19,7 +19,7 @@ BOOST_AUTO_TEST_CASE(subscriberConstructor) {
     BOOST_REQUIRE_NO_THROW(octopOS::getInstance());
     pthread_t tmp;
     int *xptr = NULL;
-    xptr = malloc(sizeof(int));
+    xptr = (int*)malloc(sizeof(int));
     *xptr = 0;
     if (pthread_create(&tmp, NULL, octopOS::listen_for_child, xptr)) {
         exit(-1);
@@ -31,7 +31,7 @@ BOOST_AUTO_TEST_CASE(publisherConstructor) {
     BOOST_REQUIRE_NO_THROW(octopOS::getInstance());
     pthread_t tmp;
     int *xptr = NULL;
-    xptr = malloc(sizeof(int));
+    xptr = (int*)malloc(sizeof(int));
     *xptr = 0;
     if (pthread_create(&tmp, NULL, octopOS::listen_for_child, xptr)) {
         exit(-1);
@@ -45,7 +45,7 @@ BOOST_AUTO_TEST_CASE(getPublishedData) {
     int answer = 5;
     int x = 0;
     int *xptr = NULL;
-    xptr = malloc(sizeof(int));
+    xptr = (int*)malloc(sizeof(int));
     *xptr = x;
     if (pthread_create(&tmp, NULL, octopOS::listen_for_child, xptr)) {
         exit(-1);
@@ -77,7 +77,7 @@ BOOST_AUTO_TEST_CASE(multiPublisher) {
     BOOST_REQUIRE_NO_THROW(octopOS::getInstance());
     pthread_t tmp;
     int *xptr = NULL;
-    xptr = malloc(sizeof(int));
+    xptr = (int*)malloc(sizeof(int));
     *xptr = 0;
     if (pthread_create(&tmp, NULL, octopOS::listen_for_child, xptr)) {
         exit(-1);
