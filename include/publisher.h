@@ -16,7 +16,8 @@
 #include <iterator>
 #include <utility>
 
-#include "tentacle.h"
+#include "tentacle.h"                                                             // NOLINT
+
 /*!
  * This class is used to publish data to a topic specified on construction. The
  * template parameter is the data type of the topic. Inherites from tentacle

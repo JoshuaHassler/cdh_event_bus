@@ -21,7 +21,7 @@
 #include <utility>
 #include <mutex>                                                                  // NOLINT
 
-#include "utility.h"
+#include "utility.h"                                                              // NOLINT
 
 /*!
  * class provides a wrapper for system V IPC message buss. This allows for easy

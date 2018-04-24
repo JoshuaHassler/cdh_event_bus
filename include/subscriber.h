@@ -21,7 +21,7 @@
 #include <functional>
 #include <tuple>
 
-#include "tentacle.h"
+#include "tentacle.h"  // NOLINT
 
 /*! typedef for the function signature of our callback */
 typedef std::function<

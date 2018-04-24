@@ -21,8 +21,8 @@
 #include <memory>
 #include <utility>
 
-#include "utility.h"
-#include "tentacle.h"
+#include "utility.h"                                                              // NOLINT
+#include "tentacle.h"                                                             // NOLINT
 
 /*!
  * octopOS is the main control class. It is singleton so there can only ever be
