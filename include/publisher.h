@@ -9,8 +9,6 @@
 #ifndef INCLUDE_PUBLISHER_H_
 #define INCLUDE_PUBLISHER_H_
 
-#include <OctopOS/tentacle.h>
-
 #include <string>
 #include <sstream>
 #include <vector>
@@ -18,6 +16,7 @@
 #include <iterator>
 #include <utility>
 
+#include "tentacle.h"
 /*!
  * This class is used to publish data to a topic specified on construction. The
  * template parameter is the data type of the topic. Inherites from tentacle

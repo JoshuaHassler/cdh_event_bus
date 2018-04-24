@@ -14,13 +14,14 @@
 #include <sys/time.h>
 #include <time.h>
 #include <unistd.h>
-#include <OctopOS/utility.h>
 
 #include <iostream>
 #include <cstdlib>
 #include <string>
 #include <utility>
 #include <mutex>                                                                  // NOLINT
+
+#include "utility.h"
 
 /*!
  * class provides a wrapper for system V IPC message buss. This allows for easy
