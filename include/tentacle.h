@@ -96,28 +96,29 @@ class tentacle {
 
 // Size-invariant string data type for publishing
 class OctoString {
-private:
+ private:
     char buf[MSGLEN - 1];
-public:
+
+ public:
     OctoString() {}
-    OctoString(const std::string &value) {
-	if(value.size() > (MSGLEN - 2)) {
-	    throw std::range_error("Given string is too large to publish.");
-	}
-	strcpy(buf, value.c_str());
+    explicit OctoString(const std::string &value) {
+        if (value.size() > (MSGLEN - 2)) {
+            throw std::range_error("Given string is too large to publish.");
+        }
+        strcpy(buf, value.c_str());  // NOLINT - complains about strcpy?
     }
     OctoString& operator=(const std::string &other) {
-	strcpy(buf, other.c_str());
+	strcpy(buf, other.c_str());  // NOLINT - complains about strcpy?
     }
     OctoString& operator=(const OctoString &other) {
-	strcpy(buf, other.buf);
+        strcpy(buf, other.buf);  // NOLINT - complains about strcpy?
     }
     std::string get() {
-	return std::string(buf);
+        return std::string(buf);
     }
 
     operator std::string() {
-	return std::string(buf);
+        return std::string(buf);
     }
 };
 

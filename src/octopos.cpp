@@ -6,6 +6,11 @@
 /*!
  * @file
  */
+#include "../include/octopos.h"
+
+#include <execinfo.h>
+#include <stdio.h>
+
 #include <string>
 #include <unordered_map>
 #include <tuple>
@@ -13,10 +18,6 @@
 #include <utility>
 #include <vector>
 
-#include "../include/octopos.h"
-
-#include <execinfo.h>
-#include <stdio.h>
 
 octopOS& octopOS::getInstance() {
     static octopOS instance;
@@ -29,11 +30,11 @@ void octopOS::sig_handler(int sig) {
     size_t size;
     size = backtrace(frames, 10);
     std::cerr << "Critical: Received signal " << sig << std::endl
-	      << "Stacktrace:" << std::endl;
+              << "Stacktrace:" << std::endl;
     backtrace_symbols_fd(frames, size, STDERR_FILENO);
 
-    for(tentacle *t: tentacles) {
-	free(t);
+    for (tentacle *t : tentacles) {
+        free(t);
     }
 
     if (shmctl(shmid, IPC_RMID, 0) < 0) {
@@ -170,8 +171,8 @@ void* octopOS::listen_for_child(void* tentacle_index_dynamic) {
                 return_data = octopOS::getInstance().create_new_topic(tokens[2],
                     std::stoi(tokens[1]));
                 std::stringstream ss;
-		unsigned temp_id = return_data.first;
-		int pub_id = get_id(tentacle::role_t::PUBLISHER);
+                unsigned temp_id = return_data.first;
+                int pub_id = get_id(tentacle::role_t::PUBLISHER);
                 ss << temp_id << " " << return_data.second << " "
                    << std::to_string(pub_id);
                 t->write(std::stoi(tokens[0]), ss.str());
