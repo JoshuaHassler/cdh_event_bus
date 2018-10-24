@@ -24,6 +24,7 @@
 #include "utility.h"                                                              // NOLINT
 #include "tentacle.h"                                                             // NOLINT
 
+
 /*!
  * octopOS is the main control class. It is singleton so there can only ever be
  * one instance. octopOS implements a light weight data bus on top of the IPC
@@ -36,10 +37,7 @@ class octopOS {
      * getInstance returns a reference to the single static instance of octopOS.
      * @return reference to running octopOS instance
      */
-    static octopOS& getInstance() {
-        static octopOS instance;
-        return instance;
-    }
+    static octopOS& getInstance();
 
     /*! copy constructor deleted to prevent accidental copying of class */
     octopOS(octopOS const&) = delete;
@@ -68,14 +66,16 @@ class octopOS {
 
     /*!
      * listen_for_child listens for requestes from a child on a specific
-     * tentacle. It then routes the request and executtes the proper octopOS
+     * tentacle. It then routes the request and executes the proper octopOS
      * code to complete the request. Function signature is designed to be used
-     * with pthreads_create.
-     * @param tentacle_index The index in the global tentacle list is should be
-     * listening on.
+     * with pthread_create.
+     * @param tentacle_index_dynamic The index in the global tentacle list to be
+     * listening on. *Note: this should be a pointer to dynamically allocated
+     * memory containing the index value. This memory will be freed by this
+     * function.*
      * @return NULL
      */
-    static void* listen_for_child(void* tentacle_index);
+    static void* listen_for_child(void* tentacle_index_dynamic);
 
     /*!
      * propagate_to_subscribers sends a message to every subscriber of a topic
@@ -143,7 +143,7 @@ class octopOS {
     /*! The ids of the used semaphores */
     static std::vector<int> semids;
     /*! The global list of tentacles used for communication with children */
-    static std::vector<std::shared_ptr<tentacle>> tentacles;
+    static std::vector<tentacle*> tentacles;
     /*! Pointers to locations inside the shared memory segment. Used for
      * allocation */
     static intptr_t *shared_ptr, *shared_end_ptr;

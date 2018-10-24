@@ -13,7 +13,7 @@ tentacle::tentacle(key_t msg_key) {
         throw std::system_error(
             errno,
             std::generic_category(),
-            "Unable to set signal handler");
+            "Unable to connect tentacle to msg bus");
     }
     if (shared_data == NULL) {
         if (!(shared_data = connect_shm())) {

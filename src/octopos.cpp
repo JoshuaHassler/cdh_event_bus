@@ -6,6 +6,11 @@
 /*!
  * @file
  */
+#include "../include/octopos.h"
+
+#include <execinfo.h>
+#include <stdio.h>
+
 #include <string>
 #include <unordered_map>
 #include <tuple>
@@ -13,10 +18,25 @@
 #include <utility>
 #include <vector>
 
-#include "../include/octopos.h"
+
+octopOS& octopOS::getInstance() {
+    static octopOS instance;
+    return instance;
+}
 
 // TODO(JoshuaHassler) streamline this
 void octopOS::sig_handler(int sig) {
+    void *frames[10];
+    size_t size;
+    size = backtrace(frames, 10);
+    std::cerr << "Critical: Received signal " << sig << std::endl
+              << "Stacktrace:" << std::endl;
+    backtrace_symbols_fd(frames, size, STDERR_FILENO);
+
+    for (tentacle *t : tentacles) {
+        free(t);
+    }
+
     if (shmctl(shmid, IPC_RMID, 0) < 0) {
         if (sig < 0)
             throw std::system_error(
@@ -87,8 +107,7 @@ octopOS::octopOS() {
                 std::generic_category(),
                 "Unable to create message queues");
         } else {
-            tentacles.push_back(std::make_shared<tentacle>(
-                tentacle(MSGKEY + i)));
+            tentacles.push_back(new tentacle(MSGKEY + i));
         }
     }
 
@@ -130,8 +149,11 @@ std::pair<unsigned, key_t> octopOS::create_new_topic
     return return_value;
 }
 
-void* octopOS::listen_for_child(void* tentacle_id) {
-    std::shared_ptr<tentacle> t = tentacles[*(int*)tentacle_id];                  // NOLINT
+// TENTACLE_INDEX_DYNAMIC is expected to be freed by this function
+void* octopOS::listen_for_child(void* tentacle_index_dynamic) {
+    int tentacle_index = *(int*)tentacle_index_dynamic;                   // NOLINT
+    free((int*)tentacle_index_dynamic);                   // NOLINT
+    tentacle *t = tentacles[tentacle_index];
 
     std::pair<long, std::string> data;                                            // NOLINT
     for (;;) {
@@ -149,8 +171,10 @@ void* octopOS::listen_for_child(void* tentacle_id) {
                 return_data = octopOS::getInstance().create_new_topic(tokens[2],
                     std::stoi(tokens[1]));
                 std::stringstream ss;
-                ss << return_data.first << " " << return_data.second << " "
-                   << std::to_string(get_id(tentacle::role_t::PUBLISHER));
+                unsigned temp_id = return_data.first;
+                int pub_id = get_id(tentacle::role_t::PUBLISHER);
+                ss << temp_id << " " << return_data.second << " "
+                   << std::to_string(pub_id);
                 t->write(std::stoi(tokens[0]), ss.str());
                 break;
             }
@@ -163,7 +187,7 @@ void* octopOS::listen_for_child(void* tentacle_id) {
                 std::pair<unsigned, key_t> response =
                     octopOS::getInstance().subscribe_to_topic(
                         tokens[2],
-                        *(int*)tentacle_id,                                       // NOLINT
+                        tentacle_index,
                         id,
                         std::stoi(tokens[1]));
 
@@ -289,6 +313,7 @@ long octopOS::get_id(tentacle::role_t role) {                                   
 }
 
 octopOS::~octopOS() {
+    std::cout << "OctopOS: he dead" << std::endl;
     try  {
         sig_handler(0);
     } catch (const std::system_error& ex) {
@@ -299,7 +324,7 @@ octopOS::~octopOS() {
 
 int octopOS::shmid = 0;
 int octopOS::tentacle_ids[NUMMODULES];
-std::vector<std::shared_ptr<tentacle>> octopOS::tentacles;
+std::vector<tentacle*> octopOS::tentacles;
 std::vector<int> octopOS::semids;
 intptr_t *octopOS::shared_ptr, *octopOS::shared_end_ptr;
 std::unordered_map<std::string, std::tuple<unsigned, key_t,
