@@ -99,4 +99,4 @@ This section aims to talk through the basic flow of the lifetime of a octopOS to
 ### Communication Protocal
 
 ## Full Documentation
-Full documentation is available [here](https://spacehauc-command-and-data-handling.github.io/OctopOS/)
+Full documentation is available [here](https://uml-spacehauc.github.io/OctopOS/)
