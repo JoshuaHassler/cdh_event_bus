@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/SPACE-HAUC/OctopOS.svg?branch=master)](https://travis-ci.org/SPACE-HAUC/OctopOS) [![codecov](https://codecov.io/gh/SPACE-HAUC/OctopOS/branch/master/graph/badge.svg)](https://codecov.io/gh/SPACE-HAUC/OctopOS) [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg?style=flat)](https://github.com/SpaceHAUC-Command-and-Data-Handling/OctopOS/blob/master/LICENSE.txt) [![release](http://github-release-version.herokuapp.com/github/SpaceHAUC-Command-and-Data-Handling/OctopOS/release.svg?style=flat)](https://github.com/SPACE-HAUC/OctopOS/releases)
+[![Build Status](https://travis-ci.org/SPACE-HAUC/OctopOS.svg?branch=master)](https://travis-ci.org/SPACE-HAUC/OctopOS) [![codecov](https://codecov.io/gh/SPACE-HAUC/OctopOS/branch/master/graph/badge.svg)](https://codecov.io/gh/SPACE-HAUC/OctopOS) [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg?style=flat)](https://github.com/SPACE-HAUC/OctopOS/blob/master/LICENSE.txt) [![release](http://github-release-version.herokuapp.com/github/SPACE-HAUC/OctopOS/release.svg?style=flat)](https://github.com/SPACE-HAUC/OctopOS/releases)
 
 # OctopOS
 
