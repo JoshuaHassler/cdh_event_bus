@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/SpaceHAUC-Command-and-Data-Handling/OctopOS.svg?branch=master&style=flat)](https://travis-ci.org/SpaceHAUC-Command-and-Data-Handling/OctopOS?branch=master) [![codecov](https://codecov.io/gh/SpaceHAUC-Command-and-Data-Handling/OctopOS/branch/master/graph/badge.svg?style=flat)](https://codecov.io/gh/SpaceHAUC-Command-and-Data-Handling/OctopOS) [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg?style=flat)](https://github.com/SpaceHAUC-Command-and-Data-Handling/OctopOS/blob/master/LICENSE.txt) [![release](http://github-release-version.herokuapp.com/github/SpaceHAUC-Command-and-Data-Handling/OctopOS/release.svg?style=flat)](https://github.com/SpaceHAUC-Command-and-Data-Handling/OctopOS/releases)
+[![Build Status](https://travis-ci.org/SPACE-HAUC/OctopOS.svg?branch=master)](https://travis-ci.org/SPACE-HAUC/OctopOS) [![codecov](https://codecov.io/gh/SPACE-HAUC/OctopOS/branch/master/graph/badge.svg)](https://codecov.io/gh/SPACE-HAUC/OctopOS) [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg?style=flat)](https://github.com/SpaceHAUC-Command-and-Data-Handling/OctopOS/blob/master/LICENSE.txt) [![release](http://github-release-version.herokuapp.com/github/SpaceHAUC-Command-and-Data-Handling/OctopOS/release.svg?style=flat)](https://github.com/SPACE-HAUC/OctopOS/releases)
 
 # OctopOS
 
@@ -24,7 +24,9 @@ If you are working on a subsystem for SPACE HAUC then most of the information yo
 ## Basic Usage
 The basic usage of octopOS is ment to make inter system communication as easy as possible! This section is designed to show you what you can do.
 
-### Includes
+To compile and install run `mkdir build && cd build && cmake .. && make && sudo make install`
+
+### Includes and Linking
 OctopOS provides a few libraries. The main ones you will be using are the `publiher` and `subscriber` libraries. All includes follow the format:
 ```cpp
 #include<OctopOS/{lib}.h>
@@ -78,7 +80,7 @@ subscriber<int> sub("test", argv[0]);
 
 Once we have created a subscriber to get data we simple do:
 ```cpp
-int x = sub.getData();
+int x = sub.get_data();
 ```
 
 A note is that this call __WILL BLOCK__ your thread if there is no data to be had. It will unblock once data is available, but is advisable to read data from a secondaty thread so your main thread can continue execution.
@@ -99,4 +101,4 @@ This section aims to talk through the basic flow of the lifetime of a octopOS to
 ### Communication Protocal
 
 ## Full Documentation
-Full documentation is available [here](https://uml-spacehauc.github.io/OctopOS/)
+Full documentation is available [here](https://space-hauc.github.io/OctopOS/)
