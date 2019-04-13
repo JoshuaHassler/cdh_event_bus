@@ -23,6 +23,19 @@
 
 #include "tentacle.h"  // NOLINT
 
+/*! Optional class. */
+template< typename T >
+class Optional {
+ public:
+    explicit Optional(T data) : data_(data), isDefined_(true) {}
+    Optional() : isDefined_(false) {}
+    inline bool isDefined() { return isDefined_; }
+    inline bool data() { return data_; }
+ private:
+     bool isDefined_;
+     T data_;
+};
+
 /*! typedef for the function signature of our callback */
 typedef std::function<
     void(std::tuple<sem_id_t, shm_object*, generic_t*>&)> callback;
@@ -173,6 +186,25 @@ class subscriber : public subscriber_manager {
 
         pthread_mutex_unlock(&data_queue_lock);
         return return_value;
+    }
+
+    /*!
+     * Reads from the top of the data queue if there is data. Will not block and
+     * and returns an empty Optional. You must check if the data is defined
+     * before using it.
+     * @return Optional<T>
+     */
+    Optional<T> get_data_async() {
+        pthread_mutex_lock(&data_queue_lock);
+        if (data_queue.empty()) {
+            pthread_mutex_unlock(&data_queue_lock);
+            return Optional<T>();
+        } else {
+            Optional<T> return_value(data_queue.front());
+            data_queue.pop();
+            pthread_mutex_unlock(&data_queue_lock);
+            return return_value;
+        }
     }
 
     /*!

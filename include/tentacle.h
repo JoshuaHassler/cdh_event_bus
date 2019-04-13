@@ -108,10 +108,12 @@ class OctoString {
         strcpy(buf, value.c_str());  // NOLINT - complains about strcpy?
     }
     OctoString& operator=(const std::string &other) {
-	strcpy(buf, other.c_str());  // NOLINT - complains about strcpy?
+	    strcpy(buf, other.c_str());  // NOLINT - complains about strcpy?
+        return *this;
     }
     OctoString& operator=(const OctoString &other) {
         strcpy(buf, other.buf);  // NOLINT - complains about strcpy?
+        return *this;
     }
     std::string get() {
         return std::string(buf);
